@@ -7,6 +7,9 @@ class EpicsBase < Formula
 
   depends_on "readline"
   depends_on "re2c"
+  
+  keg_only :provided_by_macos,
+    "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
@@ -15,6 +18,22 @@ class EpicsBase < Formula
     inreplace "configure/CONFIG_SITE", /.*INSTALL_LOCATION=.*/, "INSTALL_LOCATION=#{prefix}"
     system "make"
   end
+
+  #def post_install
+  #  cd "#{prefix}/bin/darwin-x86" do
+  #    bin.install %w[caget caput camonitor]
+  #  end
+  #end
+
+def caveats
+  s = <<~EOS
+    Installed EPICS #{version}. Recommended environment:
+    export EPICS_BASE=#{opt_prefix}
+    export EPICS_HOST_ARCH=darwin-x86
+    export PATH=#{opt_bin}/$EPICS_HOST_ARCH:$PATH
+  EOS
+  s
+end
 
   test do
     # `test do` will create, run in and delete a temporary directory.
