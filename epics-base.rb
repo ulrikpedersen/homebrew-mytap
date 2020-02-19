@@ -40,7 +40,21 @@ end
     # Run the test with `brew test epics-base`. 
     ENV['EPICS_BASE'] = "#{prefix}"
     ENV['EPICS_HOST_ARCH'] = "darwin-x86"
-    system "make", "-C", "#{buildpath}", "tapfiles"
-    system "make", "-C", "#{buildpath}", "-s", "test-results"
+    system "#{prefix}/bin/darwin-x86/caget", "-h"
+    system "#{prefix}/bin/darwin-x86/caput", "-h"
+
+    (testpath/"test.cmd").write <<~EOS
+      epicsPrtEnvParams
+      # The trouble here is that we cant automatically exit the softIoc
+      # so the whole test hangs here until user types exit...
+      exit
+    
+    EOS
+
+    # TODO: figure out how to not depend on user input on stdin
+    #system "#{prefix}/bin/darwin-x86/softIoc", "#{testpath}/test.cmd"
+    system "#{prefix}/bin/darwin-x86/makeBaseApp.pl", "-t", "example", "example"
+    #system "#{prefix}/bin/darwin-x86/makeBaseApp.pl", "-i", "-t", "example", "example"
+    system "make"
   end
 end
