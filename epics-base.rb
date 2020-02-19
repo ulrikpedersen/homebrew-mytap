@@ -1,9 +1,9 @@
 class EpicsBase < Formula
   desc "a distributed soft real-time control systems for scientific instruments such as a particle accelerators, telescopes and other large scientific experiments"
-  homepage "https://epics.anl.gov"
-  url "https://github.com/epics-base/epics-base/archive/R7.0.3.1.tar.gz"
+  homepage "https://epics-controls.org/"
+  url "https://epics-controls.org/download/base/base-7.0.3.1.tar.gz"
   version "7.0.3.1"
-  sha256 "33521511226eead16cb06075cd14336d6715cf8e1b899a11ec70f81f7c7c48b6"
+  sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
 
   depends_on "readline"
   depends_on "re2c"
@@ -42,6 +42,7 @@ end
     ENV['EPICS_HOST_ARCH'] = "darwin-x86"
     system "#{prefix}/bin/darwin-x86/caget", "-h"
     system "#{prefix}/bin/darwin-x86/caput", "-h"
+    system "#{prefix}/bin/darwin-x86/pvget", "-h"
 
     (testpath/"test.cmd").write <<~EOS
       epicsPrtEnvParams
