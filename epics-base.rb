@@ -15,7 +15,7 @@ class EpicsBase < Formula
     # ENV.deparallelize  # if your formula fails when building in parallel
     ENV['EPICS_BASE'] = "#{prefix}"
     ENV['EPICS_HOST_ARCH'] = "darwin-x86"
-    inreplace "configure/CONFIG_SITE", /.*INSTALL_LOCATION=.*/, "INSTALL_LOCATION=#{prefix}"
+    inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
     system "make"
   end
 
