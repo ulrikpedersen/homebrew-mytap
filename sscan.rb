@@ -11,10 +11,6 @@ class Sscan < Formula
   keg_only :provided_by_macos,
     "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
-  def adl
-    Pathname.new("#{prefix}/sscanApp/op/adl")
-  end
-
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
     epics_base = Formula["epics-base"].opt_prefix
@@ -28,7 +24,9 @@ class Sscan < Formula
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
     system "make"
-    adl.mkpath
-    adl.install Dir['sscanApp/op/adl/*.adl']
+
+    opi = Pathname.new("#{prefix}/sscanApp/op")
+    opi.mkpath
+    opi.install Dir['sscanApp/op/*']
   end
 end
