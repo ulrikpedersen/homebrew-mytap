@@ -5,11 +5,6 @@ class EpicsBase < Formula
   # version "7.0.3.1"
   sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
 
-  bottle do
-    root_url "http://gallerihago.net/bottles"
-    sha256 "992b90ac730264bf605645f637925a8928966f1b8176bb5ef16191c215622fcb" => :mojave
-  end
-
   keg_only :provided_by_macos,
     "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
