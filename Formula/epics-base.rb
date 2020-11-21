@@ -12,15 +12,23 @@ class EpicsBase < Formula
 
   depends_on "readline"
 
+  on_macos do
+    epics_host_arch "darwin-x86"
+  end
+  on_linux do
+    epics_host_arch "linux-x86_64"
+  end
+
   def install
     ENV["EPICS_BASE"] = prefix.to_s
-    ENV["EPICS_HOST_ARCH"] = "darwin-x86"
+    # ENV["EPICS_HOST_ARCH"] = system "sh startup/EpicsHostArch"
+    ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
     system "make"
   end
 
   # def post_install
-  #  cd "#{prefix}/bin/darwin-x86" do
+  #  cd "#{prefix}/bin/#{epics_host_arch}" do
   #    bin.install %w[caget caput camonitor]
   #  end
   # end
@@ -29,7 +37,7 @@ class EpicsBase < Formula
     <<~EOS
       Installed EPICS #{version}. Recommended environment:
       export EPICS_BASE=#{opt_prefix}
-      export EPICS_HOST_ARCH=darwin-x86
+      export EPICS_HOST_ARCH=#{epics_host_arch}
       export PATH=#{opt_bin}/$EPICS_HOST_ARCH:$PATH
     EOS
   end
@@ -38,10 +46,10 @@ class EpicsBase < Formula
     # `test do` will create, run in and delete a temporary directory.
     # Run the test with `brew test epics-base`.
     ENV["EPICS_BASE"] = prefix.to_s
-    ENV["EPICS_HOST_ARCH"] = "darwin-x86"
-    system "#{bin}/darwin-x86/caget", "-h"
-    system "#{bin}/darwin-x86/caput", "-h"
-    system "#{bin}/darwin-x86/pvget", "-h"
+    ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
+    system "#{bin}/#{epics_host_arch}/caget", "-h"
+    system "#{bin}/#{epics_host_arch}/caput", "-h"
+    system "#{bin}/#{epics_host_arch}/pvget", "-h"
 
     (testpath/"test.cmd").write <<~EOS
             epicsPrtEnvParams
@@ -52,9 +60,9 @@ class EpicsBase < Formula
     EOS
 
     # TODO: figure out how to not depend on user input on stdin
-    # system "#{prefix}/bin/darwin-x86/softIoc", "#{testpath}/test.cmd"
-    system "#{bin}/darwin-x86/makeBaseApp.pl", "-t", "example", "example"
-    # system "#{bin}/darwin-x86/makeBaseApp.pl", "-i", "-t", "example", "example"
+    # system "#{prefix}/bin/#{epics_host_arch}/softIoc", "#{testpath}/test.cmd"
+    system "#{bin}/#{epics_host_arch}/makeBaseApp.pl", "-t", "example", "example"
+    # system "#{bin}/#{epics_host_arch}/makeBaseApp.pl", "-i", "-t", "example", "example"
     system "make"
   end
 end

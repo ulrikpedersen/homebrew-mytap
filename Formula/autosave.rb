@@ -12,8 +12,9 @@ class Autosave < Formula
 
   def install
     epics_base = Formula["epics-base"].opt_prefix
+    epics_host_arch = Formula["epics-base"].epics_host_arch
     ENV["EPICS_BASE"] = epics_base.to_s
-    ENV["EPICS_HOST_ARCH"] = "darwin-x86"
+    ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
 
     # EPICS 'configure' step is to edit files in the configure/ dir to point to dependencies, etc.
     # inreplace "configure/RELEASE", /^SUPPORT=.*$/, "# removed unused SUPPORT macro"
