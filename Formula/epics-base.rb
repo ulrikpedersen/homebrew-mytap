@@ -13,10 +13,14 @@ class EpicsBase < Formula
   depends_on "readline"
 
   on_macos do
-    epics_host_arch "darwin-x86"
+    def epics_host_arch
+      "darwin-x86"
+    end
   end
   on_linux do
-    epics_host_arch "linux-x86_64"
+    def epics_host_arch
+      "linux-x86_64"
+    end
   end
 
   def install
