@@ -1,8 +1,8 @@
 class Streamdevice < Formula
-  desc "Is a generic EPICS device support for devices with a byte stream based communication interface"
+  desc "EPICS device support for byte stream based communication interfaces"
   homepage "https://paulscherrerinstitute.github.io/StreamDevice/"
   url "https://github.com/paulscherrerinstitute/StreamDevice/archive/2.8.10.tar.gz"
-  version "2.8.10"
+  # version "2.8.10"
   sha256 "5836df5f7569f2e153e0d0df2f5a40961c5804aef6f7f37f6409ec70f4fa336c"
 
   keg_only :provided_by_macos,

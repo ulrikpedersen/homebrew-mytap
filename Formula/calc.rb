@@ -1,5 +1,5 @@
 class Calc < Formula
-  desc "Contains support for run-time expression evaluation, similar to calcPostfix, in EPICS base, but extended to handle strings, arrays, and additional numeric operations"
+  desc "EPICS Calc record enables run-time expression evaluation"
   homepage "https://epics.anl.gov/bcda/synApps/calc/calc.html"
   url "https://github.com/epics-modules/calc/archive/R3-7-3.tar.gz"
   version "3.7.3"
@@ -13,7 +13,6 @@ class Calc < Formula
   depends_on "seq"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     epics_base = Formula["epics-base"].opt_prefix
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"

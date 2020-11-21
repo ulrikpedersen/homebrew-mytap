@@ -12,7 +12,6 @@ class Asyn < Formula
   depends_on "seq"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     epics_base = Formula["epics-base"].opt_prefix
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"

@@ -2,7 +2,7 @@ class Medm < Formula
   desc "EPICS Display Manager"
   homepage "https://epics.anl.gov/extensions/medm/index.php"
   url "https://github.com/epics-extensions/medm/archive/MEDM3_1_14.tar.gz"
-  version "3.1.14"
+  # version "3.1.14"
   sha256 "b87c3f85288e535de1e8e3708172e04bb55b16a8d38cfd56fbe6b2ed69b41d04"
 
   depends_on "epics-base"
@@ -12,13 +12,12 @@ class Medm < Formula
   patch :DATA
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     epics_base = Formula["epics-base"].opt_prefix
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"
 
     # EPICS 'configure' step is to edit files in the configure/ dir to point to dependencies, etc.
-    motif_prefix = Formula["openmotif"].opt_prefix
+    # motif_prefix = Formula["openmotif"].opt_prefix
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
     system "make"
     bin.install Dir["#{bin}/darwin-x86/*"]

@@ -1,5 +1,5 @@
 class Sscan < Formula
-  desc "Contains support for run-time expression evaluation, similar to calcPostfix, in EPICS base, but extended to handle strings, arrays, and additional numeric operations"
+  desc "EPICS sscan record"
   homepage "https://epics.anl.gov/bcda/synApps/sscan/sscan.html"
   url "https://github.com/epics-modules/sscan/archive/R2-11-3.tar.gz"
   version "2.11.3"
@@ -12,7 +12,6 @@ class Sscan < Formula
   depends_on "seq"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     epics_base = Formula["epics-base"].opt_prefix
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"

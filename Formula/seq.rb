@@ -2,7 +2,7 @@ class Seq < Formula
   desc "Provides EPICS with sequencer and State Notation Language (SNL) support"
   homepage "https://www-csr.bessy.de/control/SoftDist/sequencer/index.html"
   url "http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-2.2.8.tar.gz"
-  version "2.2.8"
+  # version "2.2.8"
   sha256 "f19e982d46ed467ba8604de346cac838ea27eef39462fe6ae429dc49f338a794"
 
   keg_only :provided_by_macos,
@@ -12,7 +12,6 @@ class Seq < Formula
   depends_on "re2c"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     epics_base = Formula["epics-base"].opt_prefix
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"

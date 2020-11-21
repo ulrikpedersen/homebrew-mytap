@@ -1,5 +1,5 @@
 class Busy < Formula
-  desc "Contains the  record, which allows CA clients to indicate completion in a way that works with EPICS putNotify/ca_put_callback mechanism"
+  desc "EPICS busy record enables CA clients to indicate completion via ca_put_callback"
   homepage "https://epics.anl.gov/bcda/synApps/busy/busy.html"
   url "https://github.com/epics-modules/busy/archive/R1-7-2.tar.gz"
   version "1.7.2"

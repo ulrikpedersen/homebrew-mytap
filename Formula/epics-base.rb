@@ -1,8 +1,8 @@
 class EpicsBase < Formula
-  desc "Distributed soft real-time control systems for scientific instruments such as a particle accelerators, telescopes and other large scientific experiments"
+  desc "Experimental Physics and Industrial Control System (EPICS)"
   homepage "https://epics-controls.org/"
   url "https://epics-controls.org/download/base/base-7.0.3.1.tar.gz"
-  version "7.0.3.1"
+  # version "7.0.3.1"
   sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
 
   bottle do
@@ -18,7 +18,6 @@ class EpicsBase < Formula
   depends_on "readline"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     ENV["EPICS_BASE"] = prefix.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
@@ -45,9 +44,9 @@ class EpicsBase < Formula
     # Run the test with `brew test epics-base`.
     ENV["EPICS_BASE"] = prefix.to_s
     ENV["EPICS_HOST_ARCH"] = "darwin-x86"
-    system "#{prefix}/bin/darwin-x86/caget", "-h"
-    system "#{prefix}/bin/darwin-x86/caput", "-h"
-    system "#{prefix}/bin/darwin-x86/pvget", "-h"
+    system "#{bin}/darwin-x86/caget", "-h"
+    system "#{bin}/darwin-x86/caput", "-h"
+    system "#{bin}/darwin-x86/pvget", "-h"
 
     (testpath/"test.cmd").write <<~EOS
             epicsPrtEnvParams
@@ -59,8 +58,8 @@ class EpicsBase < Formula
 
     # TODO: figure out how to not depend on user input on stdin
     # system "#{prefix}/bin/darwin-x86/softIoc", "#{testpath}/test.cmd"
-    system "#{prefix}/bin/darwin-x86/makeBaseApp.pl", "-t", "example", "example"
-    # system "#{prefix}/bin/darwin-x86/makeBaseApp.pl", "-i", "-t", "example", "example"
+    system "#{bin}/darwin-x86/makeBaseApp.pl", "-t", "example", "example"
+    # system "#{bin}/darwin-x86/makeBaseApp.pl", "-i", "-t", "example", "example"
     system "make"
   end
 end

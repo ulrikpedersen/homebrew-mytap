@@ -1,8 +1,8 @@
 class Iocstats < Formula
-  desc "Support for records that show the health and status of an EPICS IOC, plus a few IOC control records"
+  desc "Health and status of an EPICS IOC, plus a few IOC control records"
   homepage "https://www.slac.stanford.edu/grp/ssrl/spear/epics/site/devIocStats/"
   url "https://github.com/epics-modules/iocStats/archive/3.1.16.tar.gz"
-  version "3.1.16"
+  # version "3.1.16"
   sha256 "6270c83338cc4c339ffc31190aae30eb07eeb44daab3ca683706d8b061aa9e29"
 
   keg_only :provided_by_macos,

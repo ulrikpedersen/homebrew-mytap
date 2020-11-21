@@ -1,5 +1,5 @@
 class Autosave < Formula
-  desc "Contains software to store EPICS Process Variables values to files which can be restored on ioc reboot"
+  desc "Store EPICS PV values to files which can be restored on IOC reboot"
   homepage "https://epics.anl.gov/bcda/synApps/autosave/autosave.html"
   url "https://github.com/epics-modules/autosave/archive/R5-10.tar.gz"
   version "5.10"
