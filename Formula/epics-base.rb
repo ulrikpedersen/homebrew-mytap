@@ -36,6 +36,9 @@ class EpicsBase < Formula
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
     system "make"
+  end
+
+  def post_install
     ln_s Dir.glob("#{prefix}/top/bin/#{epics_host_arch}/*"), bin.to_s, verbose: true
   end
 
@@ -49,8 +52,8 @@ class EpicsBase < Formula
   end
 
   test do
-    ENV['EPICS_BASE'] = epics_base.to_s
-    ENV['EPICS_HOST_ARCH'] = epics_host_arch.to_s
+    ENV["EPICS_BASE"] = epics_base.to_s
+    ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     system "#{opt_bin}/caget", "-h"
     system "#{opt_bin}/caput", "-h"
     system "#{opt_bin}/pvget", "-h"
