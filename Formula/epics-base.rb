@@ -39,6 +39,7 @@ class EpicsBase < Formula
   end
 
   def post_install
+    bin.mkpath
     ln_s Dir.glob("#{prefix}/top/bin/#{epics_host_arch}/*"), bin.to_s, verbose: true
   end
 
