@@ -11,14 +11,14 @@ class Autosave < Formula
   depends_on "epics-base"
 
   def install
-    epics_base = Formula["epics-base"].opt_prefix
+    epics_base = Formula["epics-base"].epics_base
     epics_host_arch = Formula["epics-base"].epics_host_arch
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
 
     # EPICS 'configure' step is to edit files in the configure/ dir to point to dependencies, etc.
     # inreplace "configure/RELEASE", /^SUPPORT=.*$/, "# removed unused SUPPORT macro"
-    inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
+    inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
     # Build it

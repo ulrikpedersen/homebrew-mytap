@@ -27,17 +27,21 @@ class EpicsBase < Formula
     end
   end
 
+  def epics_base
+    "#{prefix}/top"
+  end
+
   def install
-    ENV["EPICS_BASE"] = prefix.to_s
+    ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
-    inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
+    inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{epics_base}"
     system "make"
   end
 
   def caveats
     <<~EOS
       Installed EPICS #{version}. Recommended environment:
-      export EPICS_BASE=#{opt_prefix}
+      export EPICS_BASE=#{opt_prefix}/top
       export EPICS_HOST_ARCH=#{epics_host_arch}
       export PATH=#{opt_bin}/$EPICS_HOST_ARCH:$PATH
     EOS
