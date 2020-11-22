@@ -7,8 +7,8 @@ class Autosave < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/autosave-5.10"
-    cellar :any
-    sha256 "befa0413a571ce13d0e204f40ebbe939b5a9d4f7eb5f71ef66bb32f51982bff2" => :catalina
+    sha256 "fd07135030e2a9ddd64fd91700785948f87c0624802a6fea7b7187ac9f917a6e" => :catalina
+    sha256 "158f35e55792d2b92497c7acea491c8f0f55afc8e92fcabfe256fdd4aef25fba" => :x86_64_linux
   end
 
   keg_only :provided_by_macos,
