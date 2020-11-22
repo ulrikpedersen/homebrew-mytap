@@ -12,6 +12,10 @@ class EpicsBase < Formula
 
   depends_on "readline"
 
+  # Create a function epics_host_arch that will return the
+  # appropriate EPICS host architecture definition on either
+  # MacOS or Linux. To be used for setting EPICS_HOST_ARCH
+  # environment variable.
   on_macos do
     def epics_host_arch
       "darwin-x86"
@@ -25,17 +29,10 @@ class EpicsBase < Formula
 
   def install
     ENV["EPICS_BASE"] = prefix.to_s
-    # ENV["EPICS_HOST_ARCH"] = system "sh startup/EpicsHostArch"
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}"
     system "make"
   end
-
-  # def post_install
-  #  cd "#{prefix}/bin/#{epics_host_arch}" do
-  #    bin.install %w[caget caput camonitor]
-  #  end
-  # end
 
   def caveats
     <<~EOS
@@ -44,29 +41,5 @@ class EpicsBase < Formula
       export EPICS_HOST_ARCH=#{epics_host_arch}
       export PATH=#{opt_bin}/$EPICS_HOST_ARCH:$PATH
     EOS
-  end
-
-  test do
-    # `test do` will create, run in and delete a temporary directory.
-    # Run the test with `brew test epics-base`.
-    ENV["EPICS_BASE"] = prefix.to_s
-    ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
-    system "#{bin}/#{epics_host_arch}/caget", "-h"
-    system "#{bin}/#{epics_host_arch}/caput", "-h"
-    system "#{bin}/#{epics_host_arch}/pvget", "-h"
-
-    (testpath/"test.cmd").write <<~EOS
-            epicsPrtEnvParams
-            # The trouble here is that we cant automatically exit the softIoc
-            # so the whole test hangs here until user types exit...
-            exit
-      #{"    "}
-    EOS
-
-    # TODO: figure out how to not depend on user input on stdin
-    # system "#{prefix}/bin/#{epics_host_arch}/softIoc", "#{testpath}/test.cmd"
-    system "#{bin}/#{epics_host_arch}/makeBaseApp.pl", "-t", "example", "example"
-    # system "#{bin}/#{epics_host_arch}/makeBaseApp.pl", "-i", "-t", "example", "example"
-    system "make"
   end
 end
