@@ -5,6 +5,12 @@ class EpicsBase < Formula
   # version "7.0.3.1"
   sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
 
+  bottle do
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1"
+    sha256 "1f254b030dd736aa4bbaa7bfffd39b8f54de2f0dd75c69f90d5b6fc807fc3c9f" => :catalina
+    sha256 "c8d6580287be8422158eab95d304b2134653b30ef0c7be7f9ae5b401755cd35f" => :x86_64_linux
+  end
+
   keg_only :provided_by_macos,
     "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
