@@ -4,6 +4,9 @@ class EpicsBase < Formula
   url "https://epics-controls.org/download/base/base-7.0.3.1.tar.gz"
   # version "7.0.3.1"
   sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
+  # Revisions:
+  # 1: fixed issue with installing executables directly into opt_bin
+  revision 1
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1"
@@ -44,25 +47,28 @@ class EpicsBase < Formula
     system "make"
   end
 
-  def post_install
-    bin.mkpath
-    ln_s Dir.glob("#{prefix}/top/bin/#{epics_host_arch}/*"), bin.to_s, verbose: true
-  end
+  # The post install step we used to install executables into the prefix/bin dir.
+  # However, that turns out to be more confusing than helpful and often don't work
+  # at all because some executables expect to find themselves in prefix/bin/<arch>/ dir.
+  # def post_install
+  #   bin.mkpath
+  #   ln_s Dir.glob("#{prefix}/top/bin/#{epics_host_arch}/*"), bin.to_s, verbose: true
+  # end
 
   def caveats
     <<~EOS
       Installed EPICS #{version}. Recommended environment:
       export EPICS_BASE=#{epics_base}
       export EPICS_HOST_ARCH=#{epics_host_arch}
-      export PATH=#{opt_bin}/$EPICS_HOST_ARCH:$PATH
+      export PATH=#{epics_base}/bin/$EPICS_HOST_ARCH:$PATH
     EOS
   end
 
   test do
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
-    system "#{opt_bin}/caget", "-h"
-    system "#{opt_bin}/caput", "-h"
-    system "#{opt_bin}/pvget", "-h"
+    system "#{epics_base}/bin/#{epics_host_arch}/caget", "-h"
+    system "#{epics_base}/bin/#{epics_host_arch}/caput", "-h"
+    system "#{epics_base}/bin/#{epics_host_arch}/pvget", "-h"
   end
 end
