@@ -9,9 +9,9 @@ class EpicsBase < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1"
-    sha256 "1f254b030dd736aa4bbaa7bfffd39b8f54de2f0dd75c69f90d5b6fc807fc3c9f" => :catalina
-    sha256 "c8d6580287be8422158eab95d304b2134653b30ef0c7be7f9ae5b401755cd35f" => :x86_64_linux
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1_1"
+    sha256 "43d1583b27cda0275025ce87a2eb8c451254487751384656624c86c4abd69a82" => :catalina
+    sha256 "15aaa88dddcbceedd530a5181cafb4a4eaff4fd4703ef1f8894e31083aab89e0" => :x86_64_linux
   end
 
   keg_only :provided_by_macos,
