@@ -17,3 +17,4 @@ WORKDIR /home/linuxbrew
 RUN brew tap ulrikpedersen/mytap
 RUN brew tap homebrew/test-bot
 RUN brew update
+RUN brew install re2c readline
