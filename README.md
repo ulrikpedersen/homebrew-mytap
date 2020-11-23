@@ -29,3 +29,12 @@ To test a new build of a formula:
  * Finally test with test-bot: `brew test-bot --only-formulae --verbose --tap ulrikpedersen/mytap <formula>`
 
 When all is working, push branch to github, and raise PR into main branch. Wait for github actions to complete with all green ticks before merging.
+
+## Using the Docker container
+
+Building the docker container with:
+`docker build --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -t brew-mytap:latest .`
+
+Run the container interactively with:
+`docker run --rm -it --name=mytap brew-mytap`
+
