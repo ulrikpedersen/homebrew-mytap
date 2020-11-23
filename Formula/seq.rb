@@ -5,6 +5,12 @@ class Seq < Formula
   # version "2.2.8"
   sha256 "f19e982d46ed467ba8604de346cac838ea27eef39462fe6ae429dc49f338a794"
 
+  bottle do
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/seq-2.2.8"
+    sha256 "d775381128f788e22b90ee0aceecfaae0475bc3222cf5c25d564baea1309b4ee" => :catalina
+    sha256 "f3212176f36d28da5b746c32a6d15f9ca2bc069e06c0e0165501ba5d94b9f87b" => :x86_64_linux
+  end
+
   keg_only :provided_by_macos,
     "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
