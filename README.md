@@ -38,3 +38,9 @@ Building the docker container with:
 Run the container interactively with:
 `docker run --rm -it --name=mytap brew-mytap`
 
+Or just use the container to run and test a single build or installation command:
+`docker run --rm -it brew-mytap <command>`
+
+For example to run the test-bot on a formula (e.g. autosave):
+`docker run --rm -it brew-mytap brew test-bot --only-formulae --verbose --tap ulrikpedersen/mytap autosave`
+
