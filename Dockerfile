@@ -15,4 +15,5 @@ ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH
 WORKDIR /home/linuxbrew
 
 RUN brew tap ulrikpedersen/mytap
+RUN brew tap homebrew/test-bot
 RUN brew update
