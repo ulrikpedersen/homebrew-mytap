@@ -20,10 +20,18 @@ class Asyn < Formula
     # EPICS 'configure' step is to edit files in the configure/ dir to point to dependencies, etc.
     seq_prefix = Formula["seq"].opt_prefix
     inreplace "configure/RELEASE", /^#?\s*SNCSEQ\s*=.*$/, "SNCSEQ=#{seq_prefix}/top"
-    inreplace "configure/RELEASE", /^IPAC=.*$/, "# removed unused dep on IPAC"
+    inreplace "configure/RELEASE", /^#?\s*IPAC\s*=.*$/, "# removed unused dep on IPAC"
+    inreplace "configure/RELEASE", /^#?\s*SUPPORT\s*=.*$/, "# removed unused SUPPORT macro"
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
+
+    # build away
     system "make"
+
+    # Install the UI screens as the EPICS build system doesn't do that by default
+    opi = Pathname.new("#{prefix}/top/opi")
+    opi.mkpath
+    opi.install Dir["opi/*"]
   end
 
   test do
