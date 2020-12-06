@@ -4,6 +4,8 @@ class Autosave < Formula
   url "https://github.com/epics-modules/autosave/archive/R5-10.tar.gz"
   version "5.10"
   sha256 "3f4f27283b34c5798cc9ab27d38c7191e963b0bac82cb1680a6dccddac57f48c"
+  # Revision 1: Removed :provided_by_macros arg to keg_only
+  revision 1
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/autosave-5.10"
@@ -11,8 +13,7 @@ class Autosave < Formula
     sha256 "158f35e55792d2b92497c7acea491c8f0f55afc8e92fcabfe256fdd4aef25fba" => :x86_64_linux
   end
 
-  keg_only :provided_by_macos,
-    "the EPICS build system does not lend itself particularly well to installing in a central system location"
+  keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   depends_on "epics-base"
 

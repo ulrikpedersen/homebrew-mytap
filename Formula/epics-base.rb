@@ -6,7 +6,8 @@ class EpicsBase < Formula
   sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
   # Revisions:
   # 1: fixed issue with installing executables directly into opt_bin
-  revision 1
+  # 2: Removed :provided_by_macros arg to keg_only
+  revision 2
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1_1"
@@ -14,8 +15,7 @@ class EpicsBase < Formula
     sha256 "15aaa88dddcbceedd530a5181cafb4a4eaff4fd4703ef1f8894e31083aab89e0" => :x86_64_linux
   end
 
-  keg_only :provided_by_macos,
-    "the EPICS build system does not lend itself particularly well to installing in a central system location"
+  keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   depends_on "re2c"
 
