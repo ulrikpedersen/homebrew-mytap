@@ -5,8 +5,7 @@ class Busy < Formula
   version "1.7.2"
   sha256 "cc92faae0361ce86dbf319cc50e59ecff0a9dfbb3b04a6102c9b6f9e58cce36f"
 
-  keg_only :provided_by_macos,
-    "the EPICS build system does not lend itself particularly well to installing in a central system location"
+  keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   depends_on "asyn"
 

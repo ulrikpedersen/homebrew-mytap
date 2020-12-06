@@ -5,8 +5,7 @@ class Asyn < Formula
   version "4.38"
   sha256 "1da2df85370e87d9654fd4c13b0510f9f81cc7b761adbd950c1d151cdb815a12"
 
-  keg_only :provided_by_macos,
-    "the EPICS build system does not lend itself particularly well to installing in a central system location"
+  keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   depends_on "epics-base"
   depends_on "seq"
