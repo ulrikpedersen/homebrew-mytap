@@ -10,9 +10,9 @@ class EpicsBase < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1_1"
-    sha256 "43d1583b27cda0275025ce87a2eb8c451254487751384656624c86c4abd69a82" => :catalina
-    sha256 "15aaa88dddcbceedd530a5181cafb4a4eaff4fd4703ef1f8894e31083aab89e0" => :x86_64_linux
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1_2"
+    sha256 "e2d4bade7851aca62f23ed6d533e4327fafe14d3eee8aa8d4eac4b60b11fc69d" => :catalina
+    sha256 "974c9f9e9b9c28b076e8cd0b9615b3d5508d0c389e11b76e64f1370040f6f0dd" => :x86_64_linux
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
