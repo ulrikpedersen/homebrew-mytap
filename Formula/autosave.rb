@@ -8,9 +8,9 @@ class Autosave < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/autosave-5.10"
-    sha256 "fd07135030e2a9ddd64fd91700785948f87c0624802a6fea7b7187ac9f917a6e" => :catalina
-    sha256 "158f35e55792d2b92497c7acea491c8f0f55afc8e92fcabfe256fdd4aef25fba" => :x86_64_linux
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/autosave-5.10_1"
+    sha256 "cd02df933c8fb4d4c955171152a8d542e9d350cafda49ed16948a58a726210da" => :catalina
+    sha256 "c6b9f9f8847a138a5ef2005c1d2a571aae8382c514e9e36d90e434a35aaa02f7" => :x86_64_linux
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
