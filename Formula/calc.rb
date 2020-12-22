@@ -5,6 +5,13 @@ class Calc < Formula
   version "3.7.3"
   sha256 "c1b18410275f6f03494cda4b7ab23b64520327ed65931f38f3230e25b75ae3c2"
 
+  bottle do
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/calc-3.7.3"
+    cellar :any
+    sha256 "b1322142a3e32d3d2d81aaf345d160a4f6058d47de3bb14cee56255b9f59f232" => :catalina
+    sha256 "420b646ce8588c5a72472e921924671cb2e28aef855dc61142f5bfeb35715557" => :x86_64_linux
+  end
+
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
   # Also the 'calc' name conflicts with another Homebrew formula.
 
