@@ -5,6 +5,12 @@ class Std < Formula
   version "3.6.1"
   sha256 "c88d4449d02510b5e493ee33a747b73fb80ad0a02f0445ae7c1790aec1b9b08a"
 
+  bottle do
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/std-3.6.1"
+    sha256 "2497770482087bea527e02463f9a7ba8e2c1dd4965adb40eeec530118cc2acaa" => :catalina
+    sha256 "cadb3d7ba2626e5d89ec32afff3aad608fea5837ddbc017b23ac1f8c3063e463" => :x86_64_linux
+  end
+
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   depends_on "asyn"
