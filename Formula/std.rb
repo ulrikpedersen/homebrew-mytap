@@ -34,4 +34,10 @@ class Std < Formula
     opi.mkpath
     opi.install Dir["stdApp/op/*"]
   end
+
+  test do
+    ENV["EPICS_BASE"] = Formula["epics-base"].epics_base
+    ENV["EPICS_HOST_ARCH"] = Formula["epics-base"].epics_host_arch
+    # TODO: what can we do for testing std here?
+  end
 end
