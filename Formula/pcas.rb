@@ -17,7 +17,7 @@ class Pcas < Formula
     end
   end
 
-  keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
+  keg_only "the EPICS build system does not lend itself to installing in a central system location"
 
   depends_on "epics-base"
 
