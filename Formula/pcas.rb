@@ -2,12 +2,12 @@ class Pcas < Formula
   desc "Portable Channel Access Server (PCAS)"
   homepage "https://github.com/epics-modules/pcas"
   head "https://github.com/epics-modules/pcas.git"
-  
+
   stable do
     url "https://github.com/epics-modules/pcas/archive/v4.13.2.tar.gz"
     # version "4.13.2"
     sha256 "7ff1dd052d6df97141c68fb4fc26f8a4337c7d133114012295bb5c2bfa8d2a59"
-  
+
     # Patch required for version 4.13.2 but a fix is already present on the main branch
     # of pcas upstream and is expected to be included in the next release. This patch
     # can be removed when version > 4.13.2
