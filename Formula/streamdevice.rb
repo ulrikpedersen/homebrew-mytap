@@ -5,6 +5,12 @@ class Streamdevice < Formula
   # version "2.8.10"
   sha256 "5836df5f7569f2e153e0d0df2f5a40961c5804aef6f7f37f6409ec70f4fa336c"
 
+  bottle do
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/streamdevice-2.8.10"
+    sha256 "9185892270a3af991ed882b32868fa3548d8616a45687b519e57bb68baf44516" => :catalina
+    sha256 "cfa445a7136ebd1eff49abd90a65adbc0d85b2a8f652270e33608111990ad1fe" => :x86_64_linux
+  end
+
   keg_only "the EPICS build system does not work by installing in a central system location"
 
   depends_on "asyn"
