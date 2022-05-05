@@ -19,9 +19,8 @@ class Pcas < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/pcas-4.13.2"
-    cellar :any
-    sha256 "3074dc999ffc0b3257b268b9fe2aa90198fee0eb529a6cea79885c51b9611d88" => :catalina
-    sha256 "4264fffd352d178f38f20414ac00e30a3f31fed26ce8e9811372e3677db24b4a" => :x86_64_linux
+    sha256 cellar: :any, catalina:     "3074dc999ffc0b3257b268b9fe2aa90198fee0eb529a6cea79885c51b9611d88"
+    sha256 cellar: :any, x86_64_linux: "4264fffd352d178f38f20414ac00e30a3f31fed26ce8e9811372e3677db24b4a"
   end
 
   keg_only "the EPICS build system does not lend itself to installing in a central system location"

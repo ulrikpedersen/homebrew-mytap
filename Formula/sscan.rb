@@ -7,9 +7,8 @@ class Sscan < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/sscan-2.11.3"
-    cellar :any
-    sha256 "3b2efc1701d61c4f7254d247f017f2a559aad2a94e35f0893dd17f2abe2e9e31" => :catalina
-    sha256 "452325e90cd1ee25179000ecaf380813f04faed2644295cc87cebda94c5adf9f" => :x86_64_linux
+    sha256 cellar: :any, catalina:     "3b2efc1701d61c4f7254d247f017f2a559aad2a94e35f0893dd17f2abe2e9e31"
+    sha256 cellar: :any, x86_64_linux: "452325e90cd1ee25179000ecaf380813f04faed2644295cc87cebda94c5adf9f"
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"

@@ -7,8 +7,8 @@ class Asyn < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/asyn-4.38"
-    sha256 "83261ab8afeca6a9f1d1033d3812616cae33cf2f268d7c838ca2ba7a434630be" => :catalina
-    sha256 "6457caf602f49ffa7473dbb0edc52fdb1eb9f4931b24a8887113aafaf8a8040f" => :x86_64_linux
+    sha256 catalina:     "83261ab8afeca6a9f1d1033d3812616cae33cf2f268d7c838ca2ba7a434630be"
+    sha256 x86_64_linux: "6457caf602f49ffa7473dbb0edc52fdb1eb9f4931b24a8887113aafaf8a8040f"
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"

@@ -7,9 +7,8 @@ class Busy < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/busy-1.7.2"
-    cellar :any
-    sha256 "2eeb13e362c165549a2517c154a0923e2633702494e4cc3075e3910f32999334" => :catalina
-    sha256 "01752e1c6e6a6d5a74ef2c23068ac393efa51e4f8a34c1e8a6e302ea8fe55116" => :x86_64_linux
+    sha256 cellar: :any, catalina:     "2eeb13e362c165549a2517c154a0923e2633702494e4cc3075e3910f32999334"
+    sha256 cellar: :any, x86_64_linux: "01752e1c6e6a6d5a74ef2c23068ac393efa51e4f8a34c1e8a6e302ea8fe55116"
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"

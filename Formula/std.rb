@@ -7,8 +7,8 @@ class Std < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/std-3.6.1"
-    sha256 "2497770482087bea527e02463f9a7ba8e2c1dd4965adb40eeec530118cc2acaa" => :catalina
-    sha256 "cadb3d7ba2626e5d89ec32afff3aad608fea5837ddbc017b23ac1f8c3063e463" => :x86_64_linux
+    sha256 catalina:     "2497770482087bea527e02463f9a7ba8e2c1dd4965adb40eeec530118cc2acaa"
+    sha256 x86_64_linux: "cadb3d7ba2626e5d89ec32afff3aad608fea5837ddbc017b23ac1f8c3063e463"
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"

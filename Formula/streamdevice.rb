@@ -7,8 +7,8 @@ class Streamdevice < Formula
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/streamdevice-2.8.10"
-    sha256 "9185892270a3af991ed882b32868fa3548d8616a45687b519e57bb68baf44516" => :catalina
-    sha256 "cfa445a7136ebd1eff49abd90a65adbc0d85b2a8f652270e33608111990ad1fe" => :x86_64_linux
+    sha256 catalina:     "9185892270a3af991ed882b32868fa3548d8616a45687b519e57bb68baf44516"
+    sha256 x86_64_linux: "cfa445a7136ebd1eff49abd90a65adbc0d85b2a8f652270e33608111990ad1fe"
   end
 
   keg_only "the EPICS build system does not work by installing in a central system location"
