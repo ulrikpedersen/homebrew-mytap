@@ -1,18 +1,13 @@
 class EpicsBase < Formula
   desc "Experimental Physics and Industrial Control System (EPICS)"
   homepage "https://epics-controls.org/"
-  url "https://epics-controls.org/download/base/base-7.0.3.1.tar.gz"
-  # version "7.0.3.1"
-  sha256 "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c"
-  # Revisions:
-  # 1: fixed issue with installing executables directly into opt_bin
-  # 2: Removed :provided_by_macros arg to keg_only
-  revision 2
+  url "https://epics-controls.org/download/base/base-7.0.6.1.tar.gz"
+  # version "7.0.6.1"
+  sha256 "8ff318f25e2b70df466f933636a2da85e4b0c841504b9e89857652a4786b6387"
 
   bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.3.1_2"
-    sha256 cellar: :any, catalina:     "e2d4bade7851aca62f23ed6d533e4327fafe14d3eee8aa8d4eac4b60b11fc69d"
-    sha256 cellar: :any, x86_64_linux: "974c9f9e9b9c28b076e8cd0b9615b3d5508d0c389e11b76e64f1370040f6f0dd"
+    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.6.1"
+    sha256 arm64_monterey: "31bb30812fd626c25d851f525c64f5b1ff284c0452fba6564e1a273473dc72fe"
   end
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
@@ -26,8 +21,15 @@ class EpicsBase < Formula
   # MacOS or Linux. To be used for setting EPICS_HOST_ARCH
   # environment variable.
   on_macos do
-    def epics_host_arch
-      "darwin-x86"
+    if Hardware::CPU.arm?
+      def epics_host_arch
+        "darwin-aarch64"
+      end
+    end
+    if Hardware::CPU.intel?
+      def epics_host_arch
+        "darwin-x86"
+      end
     end
   end
   on_linux do
