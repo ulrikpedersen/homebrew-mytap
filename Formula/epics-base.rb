@@ -67,7 +67,7 @@ class EpicsBase < Formula
       export EPICS_BASE=#{epics_base}
       export EPICS_HOST_ARCH=#{epics_host_arch}
       export PATH=#{epics_base}/bin/$EPICS_HOST_ARCH:$PATH
-    E
+    EOS
   end
 
   test do
