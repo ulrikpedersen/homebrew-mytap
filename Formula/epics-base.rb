@@ -15,7 +15,7 @@ class EpicsBase < Formula
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
   depends_on "make" => :build
-  
+
   depends_on "re2c"
 
   depends_on "readline"
