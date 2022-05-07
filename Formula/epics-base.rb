@@ -50,7 +50,7 @@ class EpicsBase < Formula
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
-    if OS.mac? ? system "gmake" : system "make"
+    OS.mac? ? system "gmake" : system "make"
   end
 
   # The post install step we used to install executables into the prefix/bin dir.
