@@ -4,6 +4,8 @@ class Asyn < Formula
   url "https://github.com/epics-modules/asyn/archive/R4-38.tar.gz"
   version "4.38"
   sha256 "1da2df85370e87d9654fd4c13b0510f9f81cc7b761adbd950c1d151cdb815a12"
+  license "EPICS"
+  revision 1
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/asyn-4.38"
@@ -13,6 +15,7 @@ class Asyn < Formula
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
+  depends_on "make" => :build
   depends_on "epics-base"
   depends_on "seq"
 
@@ -31,7 +34,11 @@ class Asyn < Formula
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
     # build away
-    system "make"
+    if OS.mac?
+      system "gmake"
+    else
+      system "make"
+    end
 
     # Install the UI screens as the EPICS build system doesn't do that by default
     opi = Pathname.new("#{prefix}/top/opi")
