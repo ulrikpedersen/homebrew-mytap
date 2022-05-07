@@ -50,7 +50,7 @@ class EpicsBase < Formula
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
-    system "alias", "gmake=make" if OS.linux?
+    system "alias", "gmake=\"make\"" if OS.linux?
     system "gmake"
   end
 
