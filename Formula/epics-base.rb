@@ -4,6 +4,8 @@ class EpicsBase < Formula
   url "https://epics-controls.org/download/base/base-7.0.6.1.tar.gz"
   # version "7.0.6.1"
   sha256 "8ff318f25e2b70df466f933636a2da85e4b0c841504b9e89857652a4786b6387"
+  revision 1
+  license "EPICS"
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.6.1"
@@ -12,6 +14,8 @@ class EpicsBase < Formula
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
+  depends_on "make" => :build
+  
   depends_on "re2c"
 
   depends_on "readline"
@@ -46,7 +50,7 @@ class EpicsBase < Formula
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
-    system "make"
+    system "gmake"
   end
 
   # The post install step we used to install executables into the prefix/bin dir.
