@@ -4,8 +4,8 @@ class EpicsBase < Formula
   url "https://epics-controls.org/download/base/base-7.0.6.1.tar.gz"
   # version "7.0.6.1"
   sha256 "8ff318f25e2b70df466f933636a2da85e4b0c841504b9e89857652a4786b6387"
-  revision 1
   license "EPICS"
+  revision 1
 
   bottle do
     root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/epics-base-7.0.6.1"
