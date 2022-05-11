@@ -38,14 +38,14 @@ class EpicsBase < Formula
   def epics_base
     "#{opt_prefix}/top"
   end
-  
+
   def make_cmd
     if OS.mac?
       "gmake"
     else
       "make"
     end
-  end  
+  end
 
   def install
     ENV["EPICS_BASE"] = epics_base.to_s
