@@ -5,16 +5,11 @@ class Autosave < Formula
   version "5.10"
   sha256 "3f4f27283b34c5798cc9ab27d38c7191e963b0bac82cb1680a6dccddac57f48c"
   # Revision 1: Removed :provided_by_macros arg to keg_only
-  revision 1
-
-  bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/autosave-5.10_1"
-    sha256 catalina:     "cd02df933c8fb4d4c955171152a8d542e9d350cafda49ed16948a58a726210da"
-    sha256 x86_64_linux: "c6b9f9f8847a138a5ef2005c1d2a571aae8382c514e9e36d90e434a35aaa02f7"
-  end
+  # revision 1
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
+  depends_on "make" => :build
   depends_on "epics-base"
 
   def install
@@ -30,7 +25,7 @@ class Autosave < Formula
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
     # Build it
-    system "make"
+    system Formula["epics-base"].make_cmd
 
     # Install the UI screens as the EPICS build system doesn't do that by default
     opi = Pathname.new("#{module_top}/asApp/op")

@@ -5,16 +5,10 @@ class Busy < Formula
   version "1.7.2"
   sha256 "cc92faae0361ce86dbf319cc50e59ecff0a9dfbb3b04a6102c9b6f9e58cce36f"
 
-  bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/busy-1.7.2"
-    sha256 cellar: :any, catalina:     "2eeb13e362c165549a2517c154a0923e2633702494e4cc3075e3910f32999334"
-    sha256 cellar: :any, x86_64_linux: "01752e1c6e6a6d5a74ef2c23068ac393efa51e4f8a34c1e8a6e302ea8fe55116"
-  end
-
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
+  depends_on "make" => :build
   depends_on "asyn"
-
   depends_on "epics-base"
 
   def install
@@ -33,7 +27,7 @@ class Busy < Formula
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
     # Build it
-    system "make"
+    system Formula["epics-base"].make_cmd
 
     # Install the UI screens as the EPICS build system doesn't do that by default
     opi = Pathname.new("#{prefix}/top/busyApp/op")

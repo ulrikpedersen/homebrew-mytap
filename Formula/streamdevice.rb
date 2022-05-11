@@ -5,14 +5,9 @@ class Streamdevice < Formula
   # version "2.8.10"
   sha256 "5836df5f7569f2e153e0d0df2f5a40961c5804aef6f7f37f6409ec70f4fa336c"
 
-  bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/streamdevice-2.8.10"
-    sha256 catalina:     "9185892270a3af991ed882b32868fa3548d8616a45687b519e57bb68baf44516"
-    sha256 x86_64_linux: "cfa445a7136ebd1eff49abd90a65adbc0d85b2a8f652270e33608111990ad1fe"
-  end
-
   keg_only "the EPICS build system does not work by installing in a central system location"
 
+  depends_on "make" => :build
   depends_on "asyn"
   depends_on "epics-base"
   depends_on "pcre"
@@ -36,7 +31,7 @@ class Streamdevice < Formula
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
     # Build it
-    system "make"
+    system Formula["epics-base"].make_cmd
   end
 
   test do

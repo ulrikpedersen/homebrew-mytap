@@ -5,15 +5,10 @@ class Calc < Formula
   version "3.7.3"
   sha256 "c1b18410275f6f03494cda4b7ab23b64520327ed65931f38f3230e25b75ae3c2"
 
-  bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/calc-3.7.3"
-    sha256 cellar: :any, catalina:     "b1322142a3e32d3d2d81aaf345d160a4f6058d47de3bb14cee56255b9f59f232"
-    sha256 cellar: :any, x86_64_linux: "420b646ce8588c5a72472e921924671cb2e28aef855dc61142f5bfeb35715557"
-  end
-
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
   # Also the 'calc' name conflicts with another Homebrew formula.
 
+  depends_on "make" => :build
   depends_on "epics-base"
   depends_on "seq"
 
@@ -31,7 +26,7 @@ class Calc < Formula
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
-    system "make"
+    system Formula["epics-base"].make_cmd
 
     # Install the UI screens as the EPICS build system doesn't do that by default
     opi = Pathname.new("#{prefix}/top/calcApp/op")
