@@ -1,15 +1,15 @@
 class Seq < Formula
   desc "Provides EPICS with sequencer and State Notation Language (SNL) support"
   homepage "https://www-csr.bessy.de/control/SoftDist/sequencer/index.html"
-  url "https://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-2.2.8.tar.gz"
-  # version "2.2.8"
-  sha256 "f19e982d46ed467ba8604de346cac838ea27eef39462fe6ae429dc49f338a794"
+  url "https://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-2.2.9.tar.gz"
+  # version "2.2.9"
+  sha256 "a2fdba045bcbf5f8949ab9b6ebf9a8766cbfc8737afd67fe5fca1ed7b9881398"
   # Revision 1: Removed :provided_by_macros arg to keg_only
   # revision 1
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
-  depends_on "make" => :build
+  depends_on "make"
   depends_on "epics-base"
   depends_on "re2c"
 
@@ -24,7 +24,7 @@ class Seq < Formula
     inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
     inreplace "configure/CONFIG_SITE", /^#?\s*RE2C\s*=.*$/, "RE2C=#{re2c_bindir}/re2c"
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
-    system Formula["epics-base"].make_cmd
+    system Formula["epics-base"].make_cmd, "install"
   end
 
   test do

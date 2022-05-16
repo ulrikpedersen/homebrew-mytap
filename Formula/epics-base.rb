@@ -9,7 +9,7 @@ class EpicsBase < Formula
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
-  depends_on "make" => :build
+  depends_on "make"
   depends_on "re2c"
   depends_on "readline"
 
@@ -39,19 +39,22 @@ class EpicsBase < Formula
     "#{opt_prefix}/top"
   end
 
+  # We need a fairly recent version of make for EPICS builds
+  # so use homebrew installed gmake
   def make_cmd
+    gmake_bin_dir = Formula["make"].opt_bin.to_s
     if OS.mac?
-      "gmake"
+      "#{gmake_bin_dir}/gmake"
     else
-      "make"
+      "#{gmake_bin_dir}/make"
     end
   end
 
   def install
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
-    inreplace "configure/CONFIG_SITE", /^#?\s*INSTALL_LOCATION\s*=.*$/, "INSTALL_LOCATION=#{prefix}/top"
-    system make_cmd
+    File.write("configure/CONFIG_SITE.local", "INSTALL_LOCATION=#{prefix}/top")
+    system make_cmd, "install"
   end
 
   # The post install step we used to install executables into the prefix/bin dir.
@@ -64,6 +67,9 @@ class EpicsBase < Formula
 
   def caveats
     <<~EOS
+      Use (g)make from homebrew to build modules and IOCs: #{make_cmd}
+      export PATH=#{Formula["make"].opt_bin.to_s}:$PATH
+
       Installed EPICS #{version}. Recommended environment:
       export EPICS_BASE=#{epics_base}
       export EPICS_HOST_ARCH=#{epics_host_arch}
@@ -74,6 +80,7 @@ class EpicsBase < Formula
   test do
     ENV["EPICS_BASE"] = epics_base.to_s
     ENV["EPICS_HOST_ARCH"] = epics_host_arch.to_s
+    shell_output("#{epics_base}/bin/#{epics_host_arch}/caget BLAH", result=1)
     system "#{epics_base}/bin/#{epics_host_arch}/caget", "-h"
     system "#{epics_base}/bin/#{epics_host_arch}/caput", "-h"
     system "#{epics_base}/bin/#{epics_host_arch}/pvget", "-h"

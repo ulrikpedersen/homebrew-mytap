@@ -1,13 +1,14 @@
 class Std < Formula
   desc "Contains EPICS epid and scaler records and many OPI screens"
   homepage "https://github.com/epics-modules/std"
-  url "https://github.com/epics-modules/std/archive/R3-6-1.tar.gz"
-  version "3.6.1"
+  url "https://github.com/epics-modules/std/archive/R3-6-3.tar.gz"
+  version "3.6.3"
   sha256 "c88d4449d02510b5e493ee33a747b73fb80ad0a02f0445ae7c1790aec1b9b08a"
+  license "EPICS"
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
-  depends_on "make" => :build
+  depends_on "make"
   depends_on "asyn"
   depends_on "epics-base"
   depends_on "seq"
