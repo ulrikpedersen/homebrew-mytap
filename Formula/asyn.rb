@@ -1,18 +1,15 @@
 class Asyn < Formula
   desc "Provides asynchronous support to the EPICS distributed control system"
   homepage "https://epics-modules.github.io/master/asyn"
-  url "https://github.com/epics-modules/asyn/archive/R4-38.tar.gz"
-  version "4.38"
-  sha256 "1da2df85370e87d9654fd4c13b0510f9f81cc7b761adbd950c1d151cdb815a12"
-
-  bottle do
-    root_url "https://github.com/ulrikpedersen/homebrew-mytap/releases/download/asyn-4.38"
-    sha256 catalina:     "83261ab8afeca6a9f1d1033d3812616cae33cf2f268d7c838ca2ba7a434630be"
-    sha256 x86_64_linux: "6457caf602f49ffa7473dbb0edc52fdb1eb9f4931b24a8887113aafaf8a8040f"
-  end
+  url "https://github.com/epics-modules/asyn/archive/R4-42.tar.gz"
+  version "4.42"
+  sha256 "bbd83add5a977a1668a74684cba7ffd1637fc5de8c687ce9360bc3e25304d501"
+  license "EPICS"
+  # revision 1
 
   keg_only "the EPICS build system does not lend itself particularly well to installing in a central system location"
 
+  depends_on "make"
   depends_on "epics-base"
   depends_on "seq"
 
@@ -31,7 +28,7 @@ class Asyn < Formula
     inreplace "configure/RELEASE", /^EPICS_BASE\s*=.*/, "EPICS_BASE=#{epics_base}"
 
     # build away
-    system "make"
+    system Formula["epics-base"].make_cmd, "install"
 
     # Install the UI screens as the EPICS build system doesn't do that by default
     opi = Pathname.new("#{prefix}/top/opi")
